@@ -92,16 +92,26 @@ if (contactForm) {
         submitButton.textContent = 'Sending...';
         submitButton.disabled = true;
         
-        // In a real application, you would send this data to a server
-        // For now, we'll simulate a form submission
+        // Netlify Forms will handle the submission automatically
+        // We just need to let the form submit normally after validation
         try {
-            // Simulate API call
-            await new Promise(resolve => setTimeout(resolve, 1000));
+            // Create FormData from the form
+            const formData = new FormData(contactForm);
             
-            // Success message
-            showFormMessage('Thank you! Your message has been sent. I will get back to you soon.', 'success');
-            contactForm.reset();
+            // Submit to Netlify
+            const response = await fetch('/', {
+                method: 'POST',
+                body: new URLSearchParams(formData).toString()
+            });
+            
+            if (response.ok) {
+                showFormMessage('Thank you! Your message has been sent. I will get back to you soon.', 'success');
+                contactForm.reset();
+            } else {
+                showFormMessage('Sorry, there was an error sending your message. Please try again later.', 'error');
+            }
         } catch (error) {
+            console.error('Error:', error);
             showFormMessage('Sorry, there was an error sending your message. Please try again later.', 'error');
         } finally {
             submitButton.textContent = originalText;

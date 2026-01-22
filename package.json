@@ -1,0 +1,12 @@
+{
+  "name": "tutor-site",
+  "version": "1.0.0",
+  "description": "Physics Tutoring Website",
+  "scripts": {
+    "dev": "netlify dev",
+    "build": "echo 'No build step required'"
+  },
+  "keywords": ["physics", "tutoring", "netlify"],
+  "author": "",
+  "license": "MIT"
+}

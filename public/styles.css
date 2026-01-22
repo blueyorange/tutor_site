@@ -474,6 +474,15 @@ section {
   min-height: 120px;
 }
 
+/* Hide honeypot field */
+.hidden {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
 #form-message {
   margin-top: 1rem;
   padding: 1rem;
